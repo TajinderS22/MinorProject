@@ -130,5 +130,5 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ## 💡 Credits
 
-Made with ❤️ by [Your Name]  
-NIT Jalandhar | IC Branch | 2025  
+Made with ❤️ by Tajinder Singh  
+NIT Jalandhar | IC Branch | 2026  
