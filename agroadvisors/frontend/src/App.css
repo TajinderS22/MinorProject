@@ -1,0 +1,114 @@
+
+@import "tailwindcss";
+
+
+#root {
+  max-width: 2700px;
+  margin: 0 auto;
+  padding: 0px;
+  text-align: center;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.app-container{
+    background-color: rgba(198, 217, 195, 0.5);
+    box-shadow: 0px 50px  200px rgba(66, 54, 34, 0.8);
+    height:100%,
+    sticky:true;
+}
+.nav-container{
+    background-color: rgba(157, 222, 146, 1);
+    .nav-links{
+        ul>li{
+            padding-right: 10px;
+           
+        }
+    }
+}
+.nav-entry-button{
+    
+        background-color: rgba(245, 1, 21, 0.4);
+        padding: 0px 5px 0px; 
+        border-radius: 5px;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        box-shadow: 2px 1px 0px rgba(110, 20, 155, 1);
+  
+    
+}
+.brand-text{
+    color: rgba(245, 1, 21, 0.6);
+}
+.home-image-farmer{
+    border-top-left-radius: 10%;
+    border-top-right-radius: 20%;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 20%;
+}
+.horizontal-row{
+    border-top: 1px solid grey;
+    
+}
+.body-page-block-design{
+    margin-left: 5%;
+    
+        padding:6px;
+        background-color: rgba(157, 222, 146, 0.5);
+        border-radius: 10px;
+        box-shadow: 2px 3px black;
+        padding-left: 15px;
+        margin-top: 20px;
+    
+}
+.home-page-list-2{
+    margin-left: 48px;
+    li{
+        padding:6px;
+        background-color: rgba(157, 222, 146, 0.5);
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 2px 3px black;
+        padding-left: 15px;
+        margin-top: 20px;
+    }
+}
+.footer-container{
+    background-color: rgba(185, 212, 146 ,0.8);
+    margin-top: 10px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.footer-nav-links{
+    li{
+        padding: 10px;
+    }
+}
+.weather-tile{
+    background-color:rgba(178, 160, 242 ,0.8);
+    border-radius: 5px;
+    border: 1px ,solid, #8573c7
+    
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 450px;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #ccc;
+  border-top: 6px solid #006400;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
