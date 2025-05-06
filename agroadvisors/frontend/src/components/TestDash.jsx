@@ -98,14 +98,7 @@ const TestDash=()=>{
                     </div>
                     {/* Map */}
                     <div className='bg-orange-200  m-2 rounded-md md:w-max-[300px] md:w-[275px] w-[375px] h-[50%] not-md:w-[100%] '>
-                        
-                    {/* <APIProvider apiKey={'AIzaSyCtbinxkbIch6_Kn7B3RI8i1F_kGtqVruY'} onLoad={() => console.log('Maps API has loaded.')}>
-                    <Map
-                        zoom={13}
-                        center={{ lat: -33.860664, lng: 151.208138 }}
-                        className="h-[300px] my-6"
-                    />
-                    </APIProvider> */}
+            
                    <iframe className='w-[100%] rounded-xl' height="400" src={"https://api.maptiler.com/maps/satellite/?key="+ MAP_TILER_API_KEY+"#14.1/31.39774/75.53641" } ></iframe>
 
 
