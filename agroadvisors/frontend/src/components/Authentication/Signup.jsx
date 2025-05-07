@@ -91,14 +91,14 @@ const Signup = () => {
     
                     <form className=" " method='POST' action={isLogin?'/api/auth/login':'/api/auth/signup'}>
                     <input
-                        className="m-2 p-2 w-11/12 rounded-lg"
+                        className="m-2 p-2 w-11/12 rounded-lg  bg-green-200/70 border-1 border-green-700"
                         placeholder="Email"
                         type="email"
                         autoComplete="on"
                         onChange={e=>setusername(e.target.value)}
                     />
                     <input
-                        className="m-2 p-2 w-11/12 rounded-lg"
+                        className="m-2 p-2 w-11/12 rounded-lg bg-green-200/70 border-1 border-green-700"
                         placeholder="Password"
                         type="password"
                         autoComplete="on"

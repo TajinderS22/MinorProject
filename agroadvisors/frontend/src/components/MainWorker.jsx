@@ -16,6 +16,9 @@ const MainWorker=()=>{
     let Moisture
     let CropType
     let SoilHumidity
+    let [Temperature, setTemperature] =useState(weatherDataExternal?.current?.temp_c)
+    let [AirHumidity, setAirHumidity] =useState(weatherDataExternal?.current?.humidity)
+    let [Pressure, setPressure] =useState(weatherDataExternal?.current?.pressure_mb/10)
 
     // console.log(weatherDataExternal)
 
@@ -46,7 +49,7 @@ const MainWorker=()=>{
             :  
             setisLoadingPredictionResults(true)
             
-            const data = {SoilHumidity:parseInt(SoilHumidity),Moisture:parseInt(Moisture),Temperature: weatherDataExternal.current.temp_c,AirHumidity:weatherDataExternal.current?.humidity,Pressure:weatherDataExternal.current.pressure_mb/10}; // Your data to be sent
+            const data = {SoilHumidity:parseInt(SoilHumidity),Moisture:parseInt(Moisture),Temperature: Temperature,AirHumidity: AirHumidity,Pressure:Pressure}; // Your data to be sent
             console.log(data)
 
             try {
@@ -69,7 +72,27 @@ const MainWorker=()=>{
     const CropTyperef=useRef(null)
     const Moistureref=useRef(null)
     const SoilHumidityref=useRef(null)
+    // const AirHumidityref=useRef(weatherDataExternal.current?.humidity)
+    // const Temperatureref=useRef(weatherDataExternal.current?.temp_c)
+    // const Pressureref=useRef(weatherDataExternal.current.pressure_mb/10)
+    
 
+    const handleChangeTemp=(e)=>{
+        setTemperature(e.target.value)
+        // console.log(Temperature)
+
+    }
+    const handleChangeAirHumidity=(e)=>{
+        setAirHumidity(e.target.value)
+        // console.log(AirHumidity)
+
+    }
+
+    const handleChangePressure=(e)=>{
+        setPressure(e.target.value)
+        // console.log(Pressure)
+
+    }
     
     const handleChange=()=>{
         N=Nref?.current?.value
@@ -79,6 +102,7 @@ const MainWorker=()=>{
         Moisture=Moistureref?.current?.value
         CropType=CropTyperef?.current?.value
         SoilHumidity=SoilHumidityref?.current?.value
+
 
         // console.log(N)
         // console.log(P)
@@ -116,7 +140,7 @@ const MainWorker=()=>{
 
                             <div className='flex flex-col my-6 mx-2 '>
                             <div className='flex justify-between not-md:flex-col ' >
-                                <label className ='my-auto mx-2' htmlFor="Nitrogen">Nitrogen</label>
+                                <label className ='my-auto mx-2' htmlFor="Nitrogen">Nitrogen (N) </label>
                                 <input  ref={Nref}  onChange={handleChange} id='Nitrogen' type="number" className='bg-gray-300  p-2  rounded-lg border-1 border-green-600 my-4 min-w-44 hover:shadow-2xl hover:shadow-amber-700 '   placeholder='Nitrogen' />
                             </div>
                             <div className='flex justify-between not-md:flex-col ' >
@@ -132,12 +156,31 @@ const MainWorker=()=>{
 
                         :
                         
-
+                        <div>
                         <div className='flex flex-col my-6 mx-2 '>
                             <div className='flex justify-between not-md:flex-col ' >
                                 <label className='my-auto mx-2' htmlFor="Soilhumidity">Soilhumidity</label>
                                 <input  ref={SoilHumidityref} onChange={handleChange} id='Soilhumidity' type="number" className='bg-gray-300 p-2  rounded-lg border-1 border-green-600 my-4 min-w-44  hover:shadow-2xl hover:shadow-amber-700'   placeholder='Soilhumidity' />
                             </div>
+                        </div>
+
+                        <div className='flex flex-col my-6 mx-2 '>
+                            <div className='flex justify-between not-md:flex-col ' >
+                                <label className='my-auto mx-2' htmlFor="Temperature">Temperature</label>
+                                <input onChange={handleChangeTemp} id='Temperature' type="number" value={Temperature} className='bg-gray-300 p-2  rounded-lg border-1 border-green-600 my-4 min-w-44  hover:shadow-2xl hover:shadow-amber-700'   placeholder='Soilhumidity' />
+                            </div>
+                        </div>
+
+                        <div className='flex flex-col my-6 mx-2 '>
+                            <div className='flex justify-between not-md:flex-col ' >
+                                <label className='my-auto mx-2' htmlFor="AirHumidity">Air Humidity</label>
+                                <input  onChange={handleChangeAirHumidity} id='AirHumidity' type="number" value={AirHumidity} className='bg-gray-300 p-2  rounded-lg border-1 border-green-600 my-4 min-w-44  hover:shadow-2xl hover:shadow-amber-700'   placeholder='Soilhumidity' />
+                            </div>
+                        </div>
+
+                        
+
+                        
                         </div>
 
 
@@ -165,8 +208,8 @@ const MainWorker=()=>{
                                 </select>
                             </div>
                                 <div className='flex justify-between not-md:flex-col' >
-                                <label  className ='my-auto mx-2' htmlFor="Nitrogen">Nitrogen</label>
-                                <select  ref={CropTyperef} onChange={handleChange} id='Nitrogen' type="number" className='bg-gray-300 p-2  rounded-lg border-1 border-green-600 my-4  min-w-44 hover:shadow-2xl hover:shadow-amber-700'  placeholder ='Nitrogen' >
+                                <label  className ='my-auto mx-2' htmlFor="CropType">Crop Type</label>
+                                <select  ref={CropTyperef} onChange={handleChange} id='CropType' type="number" className='bg-gray-300 p-2  rounded-lg border-1 border-green-600 my-4  min-w-44 hover:shadow-2xl hover:shadow-amber-700'  placeholder ='Nitrogen' >
                                     <option value="Maize">Maize</option>
                                     <option value="Sugarcane">Sugarcane</option>
                                     <option value="Cotton">Cotton</option>
@@ -192,6 +235,15 @@ const MainWorker=()=>{
                                 <label className='my-auto mx-2' htmlFor="Moisture">Moisture</label>
                                 <input  ref={Moistureref} onChange={handleChange} id='Moisture' type="number" className='bg-gray-300  p-2  rounded-lg border-1 border-green-600 my-4  min-w-44 hover:shadow-2xl hover:shadow-amber-700'   placeholder='Moisture' />
                             </div>
+
+                            <div className='flex flex-col my-6 mx-2 '>
+                            <div className='flex justify-between not-md:flex-col ' >
+                                <label className='my-auto mx-2' htmlFor="Pressure">Pressure</label>
+                                <input onChange={handleChangePressure} id='Pressure' type="number" value={Pressure} className='bg-gray-300 p-2  rounded-lg border-1 border-green-600 my-4 min-w-44  hover:shadow-2xl hover:shadow-amber-700'   placeholder='Soilhumidity' />
+                            </div>
+
+                        </div>
+
                         </div>
 
                         }

@@ -154,7 +154,7 @@ app.post('/api/login',(req,res)=>{
 const getWeatherData = async (req, res) => {
   try {
     const { lat, lon } = req.query; // Get lat/lon from query params (optional)
-    const apiKey =  process.env.WEATHER_API_KEY;
+    const apiKey =  process.env.WEATHER_API_KEY ;
 
     const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json`, {
       params: {
