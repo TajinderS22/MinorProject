@@ -30,11 +30,11 @@ const MainWorker=()=>{
             :  
             setisLoadingPredictionResults(true)
             
-            const data = {N:N, P:P, K:K, SoilType:SoilType, Moisture:Moisture, CropType:CropType ,      Temperatue: weatherDataExternal.current.temp_c,Humidity:weatherDataExternal.current?.   humidity}; // Your data to be sent
+            const data = {N:N, P:P, K:K, SoilType:SoilType, Moisture:Moisture, CropType:CropType ,      Temperature: weatherDataExternal.current.temp_c,Humidity:weatherDataExternal.current?.   humidity}; // Your data to be sent
             console.log(data)
 
             try {
-                const result = await axios.post('http://localhost:3000/predict-fertilizer', data);
+                const result = await axios.post('/predict/predict-fertilizer', data);
                 console.log(result.data);
                 console.log(result.data.data.result)
                 setisResultsLoaded(true);
@@ -53,7 +53,7 @@ const MainWorker=()=>{
             console.log(data)
 
             try {
-                const result = await axios.post('http://localhost:3000/predict-irrigation', data);
+                const result = await axios.post('/predict/predict-irrigation', data);
                 console.log(result.data);
                 console.log(result.data?.data)
                 setisResultsLoaded(true);
