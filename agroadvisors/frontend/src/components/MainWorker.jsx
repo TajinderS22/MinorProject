@@ -36,9 +36,9 @@ const MainWorker=()=>{
             try {
                 const result = await axios.post('/predict/predict-fertilizer', data);
                 console.log(result.data);
-                console.log(result.data.data.result)
+                console.log(result?.data?.result)
                 setisResultsLoaded(true);
-                setPredictionResults(result.data?.data?.result)  
+                setPredictionResults(result.data?.result)  
 
             } catch (error) {
                 console.error("Error:", error);  // Log any error that occurs
@@ -57,7 +57,7 @@ const MainWorker=()=>{
                 console.log(result.data);
                 console.log(result.data?.data)
                 setisResultsLoaded(true);
-                setPredictionResults(result.data?.data)  
+                setPredictionResults(result.data?.result)  
 
             } catch (error) {
                 console.error("Error:", error);  // Log any error that occurs
