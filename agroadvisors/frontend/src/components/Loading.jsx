@@ -22,13 +22,14 @@ const Loading = () => {
       const result = await getGPTResults();
       setdata1(result);
       setfertInfoLoaded(true)
-      }
+      console.log(data1)
+
+    }
     };
     fetchData();
   }, [PredictionResults]);
   
 
-  console.log(data1)
 
  
   if(fertilizerModelSelected){
@@ -93,7 +94,7 @@ const Loading = () => {
             <div className='bg-sky-300 min-h-[500px] shadow-2xl py-8 shadow-amber-700 mt-6 rounded-xl h-3/6 w-full'>
               <div className='flex flex-col justify-between h-[100px]' >
               
-              <p className="text-green-800 font-bold text-2xl" >
+              <div className="text-green-800 font-bold text-2xl" >
               {console.log(PredictionResults)}
                 {PredictionResults==1?
                 
@@ -115,7 +116,7 @@ const Loading = () => {
               </div>
               
               }
-              </p>
+              </div>
               </div>
           </div>
         </div>

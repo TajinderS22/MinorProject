@@ -57,6 +57,11 @@ def predicting_irrigation():
 
             node_data = request.get_json()
             print("Received from Node:", node_data)
+            print(type((node_data['Moisture'])))
+            print(type(node_data['Temperature']))
+            print(type(node_data['SoilHumidity']))
+            print(type(node_data['AirHumidity']))
+            print(type((node_data['Pressure'])))
            
             data =IR_CustomData(
                 Soil_Moisture=float(node_data['Moisture']),

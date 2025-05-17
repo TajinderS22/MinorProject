@@ -104,8 +104,8 @@ app.post('/api/predict-fertilizer', async (req, res) => {
     console.log(result.data)
     res.status(200).json({ data:result.data });
   } catch (error) {
-    console.log(error)
-    res.status(400).json({ error:error });
+    console.log("Someting is wrong")
+    res.status(400).json({ error:"Something is Wrong" });
   }
   
 });
@@ -119,7 +119,7 @@ app.post('/api/predict-irrigation',async (req,res)=>{
       res.status(200).json({data:result?.data});
 
     }catch(error){
-      console.log(error)
+      console.log("Something is wrong")
       res.status(400).json({error:error})
     }
 

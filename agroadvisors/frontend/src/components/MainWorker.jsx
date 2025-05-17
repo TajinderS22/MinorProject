@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext, useState } from 'react';
 import { useRef } from 'react';
 import axios from 'axios'
@@ -7,111 +8,111 @@ import UserContext from '../Utils/UserContext';
 
 const MainWorker=()=>{
 
-    const {setisResultsLoaded,setPredictionResults,weatherDataExternal,fertilizerModelSelected,setfertilizerModelSelected}=useContext(UserContext)
+    const { setisResultsLoaded, setPredictionResults, weatherDataExternal, fertilizerModelSelected, setfertilizerModelSelected } = useContext(UserContext);
 
-    let N
-    let P
-    let K
-    let SoilType
-    let Moisture
-    let CropType
-    let SoilHumidity
-    let [Temperature, setTemperature] =useState(weatherDataExternal?.current?.temp_c)
-    let [AirHumidity, setAirHumidity] =useState(weatherDataExternal?.current?.humidity)
-    let [Pressure, setPressure] =useState(weatherDataExternal?.current?.pressure_mb/10)
-
-    // console.log(weatherDataExternal)
+    const [N, setN] = useState('');
+  const [P, setP] = useState('');
+  const [K, setK] = useState('');
+  const [SoilType, setSoilType] = useState('');
+  const [Moisture, setMoisture] = useState('');
+  const [CropType, setCropType] = useState('');
+  const [SoilHumidity, setSoilHumidity] = useState('');
+    let [Temperature, setTemperature] = useState(weatherDataExternal?.current?.temp_c);
+    let [AirHumidity, setAirHumidity] = useState(weatherDataExternal?.current?.humidity);
+    let [Pressure, setPressure] = useState(weatherDataExternal?.current?.pressure_mb / 10);
 
     const handleFertilizerPredictionClick = async (e) => {
         e.preventDefault();
-        if(fertilizerModelSelected){
+        if (fertilizerModelSelected) {
+            if (N === "" || P === "" || K === "" || Moisture === "") {
+                alert("Please fill all the Fields");
+            } else {
+                setisLoadingPredictionResults(true);
 
-            (N==""||P==""||K==""||Moisture=="")? alert("Please fill all the Fields")
-            :  
-            setisLoadingPredictionResults(true)
-            
-            const data = {N:N, P:P, K:K, SoilType:SoilType, Moisture:Moisture, CropType:CropType ,      Temperature: weatherDataExternal.current.temp_c,Humidity:weatherDataExternal.current?.   humidity}; // Your data to be sent
-            console.log(data)
+                const data = { 
+                    N: N, 
+                    P: P, 
+                    K: K, 
+                    SoilType: SoilType, 
+                    Moisture: Moisture, 
+                    CropType: CropType, 
+                    Temperature: weatherDataExternal.current.temp_c,
+                    Humidity: weatherDataExternal.current?.humidity 
+                };
 
-            try {
-                const result = await axios.post('/api/predict-fertilizer', data);
-                console.log(result.data);
-                console.log(result?.data?.data?.result)
-                setisResultsLoaded(true);
-                setPredictionResults(result?.data?.data?.result)  
+                console.log(data);
 
-            } catch (error) {
-                console.error("Error:", error);  // Log any error that occurs
+                try {
+                    const result = await axios.post('/api/predict-fertilizer', data);
+                    console.log(result.data);
+                    setisResultsLoaded(true);
+                    setPredictionResults(result?.data?.data?.result);
+                } catch (error) {
+                    console.error("Error:", error);
+                }
             }
-        }
-        else{
-            (SoilHumidity==""||Moisture=="")? alert("Please fill all the Fields")
-            :  
-            setisLoadingPredictionResults(true)
-            
-            const data = {SoilHumidity:(SoilHumidity),Moisture:(Moisture),Temperature: Temperature,AirHumidity: AirHumidity,Pressure:Pressure}; // Your data to be sent
-            console.log(data)
+        } else {
+            if (SoilHumidity === "" || Moisture === "") {
+                alert("Please fill all the Fields");
+            } else {
+                setisLoadingPredictionResults(true);
 
-            try {
-                const result = await axios.post('/api/predict-irrigation', data);
-                console.log(result);
-                console.log(result.data?.data?.result)
-                setisResultsLoaded(true);
-                setPredictionResults(result.data?.data?.result)  
+                const data = {
+                    'SoilHumidity': parseFloat(SoilHumidity),
+                    'Moisture': parseFloat(Moisture),
+                    Temperature: parseFloat(Temperature),
+                    AirHumidity: parseFloat(AirHumidity),
+                    Pressure: parseFloat(Pressure)
+                };
 
-            } catch (error) {
-                console.error("Error:", error);  // Log any error that occurs
+                console.log(data);
+
+                try {
+                    const result = await axios.post('/api/predict-irrigation', data);
+                    console.log(result);
+                    setisResultsLoaded(true);
+                    setPredictionResults(result.data?.data?.result);
+                } catch (error) {
+                    console.error("Error:", error);
+                }
             }
         }
     };
 
-    const Nref=useRef(null)
-    const Pref=useRef(null)
-    const Kref=useRef(null)
-    const SoilTyperef=useRef(null)
-    const CropTyperef=useRef(null)
-    const Moistureref=useRef(null)
-    const SoilHumidityref=useRef(null)
-    // const AirHumidityref=useRef(weatherDataExternal.current?.humidity)
-    // const Temperatureref=useRef(weatherDataExternal.current?.temp_c)
-    // const Pressureref=useRef(weatherDataExternal.current.pressure_mb/10)
-    
+    const Nref = useRef(null);
+    const Pref = useRef(null);
+    const Kref = useRef(null);
+    const SoilTyperef = useRef(null);
+    const CropTyperef = useRef(null);
+    const Moistureref = useRef(null);
+    const SoilHumidityref = useRef(null);
 
-    const handleChangeTemp=(e)=>{
-        setTemperature(e.target.value)
-        // console.log(Temperature)
+    const handleChangeTemp = (e) => {
+        setTemperature(e.target.value);
+    };
 
-    }
-    const handleChangeAirHumidity=(e)=>{
-        setAirHumidity(e.target.value)
-        // console.log(AirHumidity)
+    const handleChangeAirHumidity = (e) => {
+        setAirHumidity(e.target.value);
+    };
 
-    }
+    const handleChangePressure = (e) => {
+        setPressure(e.target.value);
+    };
 
-    const handleChangePressure=(e)=>{
-        setPressure(e.target.value)
-        // console.log(Pressure)
+    const handleChange = () => {
+        setN ( Nref?.current?.value);
+        setP ( Pref?.current?.value);
+        setK (Kref?.current?.value);
+        setSoilType ( SoilTyperef?.current?.value);
+        setMoisture ( Moistureref?.current?.value);
+        setCropType (CropTyperef?.current?.value);
+        setSoilHumidity ( SoilHumidityref?.current?.value);
 
-    }
-    
-    const handleChange=()=>{
-        N=Nref?.current?.value
-        P=Pref?.current?.value
-        K=Kref?.current?.value
-        SoilType=SoilTyperef?.current?.value
-        Moisture=Moistureref?.current?.value
-        CropType=CropTyperef?.current?.value
-        SoilHumidity=SoilHumidityref?.current?.value
+        // Ensure Moisture and SoilHumidity are not undefined
+        console.log(`Moisture: ${Moisture}`);
+        console.log(`SoilHumidity: ${SoilHumidity}`);
+    };
 
-
-        // console.log(N)
-        // console.log(P)
-        // console.log(K)
-        // console.log(SoilType)
-        // console.log(Moisture)
-        // console.log(CropType)
-        // console.log(SoilHumidity)
-    }
     
 
     const [isLoadingPredictionResults,setisLoadingPredictionResults]=useState(false);
@@ -260,6 +261,7 @@ const MainWorker=()=>{
                         setfertilizerModelSelected(!fertilizerModelSelected);
                         setisResultsLoaded(false);
                         setisLoadingPredictionResults(false)
+                        setPredictionResults(null)
                     }} >
                         {fertilizerModelSelected?"Irrigation System":"Fertilizer Prediction"}
                     </button>
