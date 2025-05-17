@@ -49,8 +49,6 @@ def predicting_fertilizer():
         logging.error(f"Error in prediction: {e}")
         return jsonify({ error:"Something went wrong. Please try again."})
 
-    
-    return render_template('index.html')
 
 @app.route('/predict-irrigation', methods=['GET', 'POST'])
 def predicting_irrigation():
@@ -74,8 +72,8 @@ def predicting_irrigation():
             results = predict_pipeline.predict(pred_df)
             logging.info(f"Prediction: {results}")
 
-            if(results==0): results = "DO NOT IRRIGATE"
-            else: results = "IRRIGATE"
+            if(results==0): results = 0
+            else: results = "
             
 
             
@@ -85,8 +83,6 @@ def predicting_irrigation():
         logging.error(f"Error in prediction: {e}")
         return jsonify({ error:"Something went wrong. Please try again."})
 
-    
-    return render_template('index2.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
