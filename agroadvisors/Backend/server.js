@@ -97,7 +97,7 @@ const LoginUser=async (data,res)=>{
 
 // app.post('/signup')
 
-app.post('/predict-fertilizer', async (req, res) => {
+app.post('/api/predict-fertilizer', async (req, res) => {
   console.log(req.body);
   try {
     const result= await axios.post('/predict/predict-fertilizer',req.body)
@@ -111,7 +111,7 @@ app.post('/predict-fertilizer', async (req, res) => {
 });
 
 
-app.post('/predict-irrigation',async (req,res)=>{
+app.post('/api/predict-irrigation',async (req,res)=>{
     const data = (req.body)
     try{
       const result =await axios.post('/predict/irrigation-system',data)
