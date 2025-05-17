@@ -35,7 +35,7 @@ const MainWorker=()=>{
 
             try {
                 const result = await axios.post('/predict/predict-fertilizer', data);
-                console.log(result.data);
+                // console.log(result.data);
                 console.log(result.data.data.result)
                 setisResultsLoaded(true);
                 setPredictionResults(result.data?.data?.result)  
@@ -54,7 +54,7 @@ const MainWorker=()=>{
 
             try {
                 const result = await axios.post('/predict/predict-irrigation', data);
-                console.log(result.data);
+                // console.log(result.data);
                 console.log(result.data?.data)
                 setisResultsLoaded(true);
                 setPredictionResults(result.data?.data)  
