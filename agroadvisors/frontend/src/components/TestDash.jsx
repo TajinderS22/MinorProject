@@ -18,7 +18,7 @@ const TestDash=()=>{
 
     useEffect(() => {
         const getWeatherDataFromServer= async()=>{
-            const response=await axios('/api/weather');
+            const response=await axios('http://localhost:3000/api/weather');
             // console.log(response)
             setweatherDataExternal(response.data);
     

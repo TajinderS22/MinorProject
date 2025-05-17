@@ -18,7 +18,7 @@ const Loading = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if(PredictionResults){
+      if(PredictionResults && fertilizerModelSelected){
       const result = await getGPTResults();
       setdata1(result);
       setfertInfoLoaded(true)
@@ -40,10 +40,10 @@ const Loading = () => {
         <div>
             <div className='bg-sky-300 min-h-[500px] shadow-2xl py-8 shadow-amber-700 mt-6 rounded-xl h-3/6 w-full'>
               <div>
-                <div class=" mx-4 mt-4 p-6 bg-green-200/70 hover:bg-green-200/30 border-1 border-green-500 rounded-2xl shadow-lg shadow-green-700 text-center">
-                <h2 class="text-2xl font-semibold text-green-800">✅ Recommendation: <span class="font-bold text-red-700">{PredictionResults}</span></h2>
-                <p class="mt-4 text-green-700 text-base">Carefully use the fertilizer as per you Crop and Soil Type</p>
-                <p class="text-green-700 text-base">We here help you Identify the right Type of Fertilizer as per your availability</p>
+                <div className=" mx-4 mt-4 p-6 bg-green-200/70 hover:bg-green-200/30 border-1 border-green-500 rounded-2xl shadow-lg shadow-green-700 text-center">
+                <h2 className="text-2xl font-semibold text-green-800">✅ Recommendation: <span className="font-bold text-red-700">{PredictionResults}</span></h2>
+                <p className="mt-4 text-green-700 text-base">Carefully use the fertilizer as per you Crop and Soil Type</p>
+                <p className="text-green-700 text-base">We here help you Identify the right Type of Fertilizer as per your availability</p>
                 </div>
                 
                   {fertInfoLoaded?
@@ -88,28 +88,29 @@ const Loading = () => {
     <div>
       {
         isResultsLoaded?
-
+        
         <div>
             <div className='bg-sky-300 min-h-[500px] shadow-2xl py-8 shadow-amber-700 mt-6 rounded-xl h-3/6 w-full'>
               <div className='flex flex-col justify-between h-[100px]' >
               
               <p className="text-green-800 font-bold text-2xl" >
+              {console.log(PredictionResults)}
                 {PredictionResults==1?
                 
                 <div>
-                  <div class=" mx-4 mt-4 p-6  border-1 bg-green-200/70 hover:bg-green-200/30 border-green-500 rounded-2xl shadow-lg shadow-green-700 text-center">
-                  <h2 class="text-3xl font-semibold text-blue-800">🌱 Recommendation: <span class="font-bold text-green-800">IRRIGATE</span></h2>
-                  <p class="mt-4 text-blue-700 text-base">Your soil moisture is below the threshold.</p>
-                  <p class="text-blue-700 text-base">We recommend watering your crops today to maintain healthy growth.</p>
+                  <div className=" mx-4 mt-4 p-6  border-1 bg-green-200/70 hover:bg-green-200/30 border-green-500 rounded-2xl shadow-lg shadow-green-700 text-center">
+                  <h2 className="text-3xl font-semibold text-blue-800">🌱 Recommendation: <span className="font-bold text-green-800">IRRIGATE</span></h2>
+                  <p className="mt-4 text-blue-700 text-base">Your soil moisture is below the threshold.</p>
+                  <p className="text-blue-700 text-base">We recommend watering your crops today to maintain healthy growth.</p>
                   </div>
                 </div>
               :
               
               <div>
-                <div class=" mx-4 mt-4 p-6 bg-red-200/70 hover:bg-red-200/30 border-1 border-red-500 rounded-2xl shadow-lg shadow-red-700 text-center">
-                <h2 class="text-2xl font-semibold text-green-800">✅ Recommendation: <span class="font-bold text-red-700">DO NOT IRRIGATE</span></h2>
-                <p class="mt-4 text-red-700 text-base">Soil moisture is adequate.</p>
-                <p class="text-red-700 text-base">Hold off on watering to conserve water and avoid over-saturation.</p>
+                <div className=" mx-4 mt-4 p-6 bg-red-200/70 hover:bg-red-200/30 border-1 border-red-500 rounded-2xl shadow-lg shadow-red-700 text-center">
+                <h2 className="text-2xl font-semibold text-green-800">✅ Recommendation: <span className="font-bold text-red-700">DO NOT IRRIGATE</span></h2>
+                <p className="mt-4 text-red-700 text-base">Soil moisture is adequate.</p>
+                <p className="text-red-700 text-base">Hold off on watering to conserve water and avoid over-saturation.</p>
                 </div>
               </div>
               

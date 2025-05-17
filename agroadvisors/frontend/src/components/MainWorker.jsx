@@ -34,7 +34,7 @@ const MainWorker=()=>{
             console.log(data)
 
             try {
-                const result = await axios.post('/api/predict-fertilizer', data);
+                const result = await axios.post('http://localhost:3000/api/predict-fertilizer', data);
                 console.log(result.data);
                 console.log(result?.data?.data?.result)
                 setisResultsLoaded(true);
@@ -49,15 +49,15 @@ const MainWorker=()=>{
             :  
             setisLoadingPredictionResults(true)
             
-            const data = {SoilHumidity:parseInt(SoilHumidity),Moisture:parseInt(Moisture),Temperature: Temperature,AirHumidity: AirHumidity,Pressure:Pressure}; // Your data to be sent
+            const data = {SoilHumidity:(SoilHumidity),Moisture:(Moisture),Temperature: Temperature,AirHumidity: AirHumidity,Pressure:Pressure}; // Your data to be sent
             console.log(data)
 
             try {
-                const result = await axios.post('/api/predict-irrigation', data);
-                // console.log(result.data);
-                console.log(result.data?.result)
+                const result = await axios.post('http://localhost:3000/api/predict-irrigation', data);
+                console.log(result);
+                console.log(result.data?.data?.result)
                 setisResultsLoaded(true);
-                setPredictionResults(result.data?.result)  
+                setPredictionResults(result.data?.data?.result)  
 
             } catch (error) {
                 console.error("Error:", error);  // Log any error that occurs
