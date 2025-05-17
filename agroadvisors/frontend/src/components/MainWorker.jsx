@@ -40,11 +40,11 @@ const MainWorker=()=>{
                     Humidity: weatherDataExternal.current?.humidity 
                 };
 
-                console.log(data);
+                //console.log(data);
 
                 try {
                     const result = await axios.post('/api/predict-fertilizer', data);
-                    console.log(result.data);
+                    //console.log(result.data);
                     setisResultsLoaded(true);
                     setPredictionResults(result?.data?.data?.result);
                 } catch (error) {
@@ -65,11 +65,11 @@ const MainWorker=()=>{
                     Pressure: parseFloat(Pressure)
                 };
 
-                console.log(data);
+                //console.log(data);
 
                 try {
                     const result = await axios.post('/api/predict-irrigation', data);
-                    console.log(result);
+                    //console.log(result);
                     setisResultsLoaded(true);
                     setPredictionResults(result.data?.data?.result);
                 } catch (error) {
@@ -109,8 +109,8 @@ const MainWorker=()=>{
         setSoilHumidity ( SoilHumidityref?.current?.value);
 
         // Ensure Moisture and SoilHumidity are not undefined
-        console.log(`Moisture: ${Moisture}`);
-        console.log(`SoilHumidity: ${SoilHumidity}`);
+        //console.log(`Moisture: ${Moisture}`);
+        //console.log(`SoilHumidity: ${SoilHumidity}`);
     };
 
     

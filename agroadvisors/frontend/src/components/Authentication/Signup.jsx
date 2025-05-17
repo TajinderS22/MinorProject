@@ -17,7 +17,7 @@ const Signup = () => {
     const [password,setpassword]=useState(null);
     const navigate = useNavigate();
     useEffect(() => {
-       console.log("isUser loged in ",isUserLogedIn)
+       //console.log("isUser loged in ",isUserLogedIn)
        if(isUserLogedIn){
         navigate('/dashboard')
        }
@@ -44,7 +44,7 @@ const Signup = () => {
                 alert(result.message)
         
                 if(response.ok){
-                    console.log(isUserLogedIn)
+                    //console.log(isUserLogedIn)
                     setisUserLogedIn(true)
                 }
                 
@@ -61,7 +61,7 @@ const Signup = () => {
                 alert(result.message)
         
                 if(response.ok){
-                    console.log(isUserLogedIn)
+                    //console.log(isUserLogedIn)
                     setisUserLogedIn(true)
                 }
 

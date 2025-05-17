@@ -4,8 +4,8 @@ import client from '../Utils/Gemini'
 
 const Loading = () => {
   const {isResultsLoaded,PredictionResults,fertilizerModelSelected}=useContext(UserContext)
-  console.log(isResultsLoaded)
-  console.log(PredictionResults)
+  //console.log(isResultsLoaded)
+  //console.log(PredictionResults)
   const [fertInfoLoaded,setfertInfoLoaded]=useState(false)
   const [data1,setdata1]=useState(null)
   const getGPTResults = async () => {
@@ -22,7 +22,7 @@ const Loading = () => {
       const result = await getGPTResults();
       setdata1(result);
       setfertInfoLoaded(true)
-      console.log(data1)
+      //console.log(data1)
 
     }
     };
@@ -95,7 +95,7 @@ const Loading = () => {
               <div className='flex flex-col justify-between h-[100px]' >
               
               <div className="text-green-800 font-bold text-2xl" >
-              {console.log(PredictionResults)}
+              {/* {//console.log(PredictionResults)} */}
                 {PredictionResults==1?
                 
                 <div>
