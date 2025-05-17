@@ -52,7 +52,7 @@ def predicting_fertilizer():
     
     return render_template('index.html')
 
-@app.route('/irrigation-system', methods=['GET', 'POST'])
+@app.route('/predict-irrigation', methods=['GET', 'POST'])
 def predicting_irrigation():
     try:
         if request.method == 'POST':
@@ -61,10 +61,10 @@ def predicting_irrigation():
             print("Received from Node:", node_data)
            
             data =IR_CustomData(
-                Soil_Moisture=float(node_data['Soil_Moisture']),
+                Soil_Moisture=float(node_data['Moisture']),
                 Temperature=float(node_data['Temperature']),
-                Soil_Humidity=float(node_data['Soil_Humidity']),
-                Air_Humidity=float(node_data['Air_Humidity']),
+                Soil_Humidity=float(node_data['SoilHumidity']),
+                Air_Humidity=float(node_data['AirHumidity']),
                 Pressure=float(node_data['Pressure']),
             )
 
