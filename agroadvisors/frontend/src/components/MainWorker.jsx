@@ -35,10 +35,10 @@ const MainWorker=()=>{
 
             try {
                 const result = await axios.post('/predict/predict-fertilizer', data);
-                // console.log(result.data);
-                console.log(result?.data?.result)
+                console.log(result.data);
+                // console.log(result?.data?.result)
                 setisResultsLoaded(true);
-                setPredictionResults(result.data?.result)  
+                setPredictionResults(result?.data)  
 
             } catch (error) {
                 console.error("Error:", error);  // Log any error that occurs
@@ -54,10 +54,10 @@ const MainWorker=()=>{
 
             try {
                 const result = await axios.post('/predict/predict-irrigation', data);
-                // console.log(result.data);
-                console.log(result.data?.result)
+                console.log(result.data);
+                // console.log(result.data?.result)
                 setisResultsLoaded(true);
-                setPredictionResults(result.data?.result)  
+                setPredictionResults(result.data)  
 
             } catch (error) {
                 console.error("Error:", error);  // Log any error that occurs
