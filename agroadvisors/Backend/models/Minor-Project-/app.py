@@ -73,7 +73,7 @@ def predicting_irrigation():
             logging.info(f"Prediction: {results}")
 
             if(results==0): results = 0
-            else: results = "
+            else: results = 1
             
 
             
