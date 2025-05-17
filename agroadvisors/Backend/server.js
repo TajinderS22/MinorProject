@@ -154,19 +154,18 @@ app.post('/api/login',(req,res)=>{
 // Weather Data Fetching Function
 const getWeatherData = async (req, res) => {
   try {
-    const { lat, lon } = req.query; // Get lat/lon from query params (optional)
-    const apiKey =  process.env.WEATHER_API_KEY ;
+    const { latitude, longitude } = req.body;  
+    const apiKey = process.env.WEATHER_API_KEY;
 
-    const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json`, {
+    const response = await axios.get('https://api.weatherapi.com/v1/forecast.json', {
       params: {
         key: apiKey,
-        q: `${lat || 31.39609029214801},${lon || 75.53686703551487}`, // Use provided lat/lon or default
+        q: `${latitude || 31.39609029214801},${longitude || 75.53686703551487}`,  
         days: 3,
         aqi: 'no',
         alerts: 'no',
       },
     });
-    
 
     if (response.data) {
       return res.json(response.data);
@@ -175,13 +174,12 @@ const getWeatherData = async (req, res) => {
     }
   } catch (error) {
     console.error('Error fetching weather data:', error.message);
-    res.status(500).json({ error: 'Failed to fetch weather data' });
+    return res.status(500).json({ error: 'Failed to fetch weather data' });
   }
 };
 
-// API Route
-app.get('/api/weather', getWeatherData);
 
+app.post('/api/weather', getWeatherData);
 
 
 

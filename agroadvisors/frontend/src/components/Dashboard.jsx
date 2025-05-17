@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React,{useContext, useEffect} from "react";
+import React,{useContext, useState,useEffect} from "react";
 import axios from "axios";
 import WeatherTile from "./WeatherTile";
 import MainWorker from "./MainWorker";
@@ -14,11 +15,13 @@ import ProtectedRoute from "./Authentication/ProtectedRoute";
 
 const Dashboard=()=>{
     const {weatherDataExternal,setweatherDataExternal}=useContext(UserContext);
+    const [Longitude,setLongitude]=useState(null)
+    const [Latitude,setLatitude]=useState(null)
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            console.log("Latitude:", position.coords.latitude);
-            console.log("Longitude:", position.coords.longitude);
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
           },
           (error) => {
             console.error("Error getting location:", error);
@@ -32,18 +35,25 @@ const Dashboard=()=>{
       } else {
         console.log("Geolocation is not available on this device/browser.");
       }
-      
 
-    useEffect(() => {
-        const getWeatherDataFromServer= async()=>{
-            const response=await axios('/api/weather');
-            // console.log(response)
-            setweatherDataExternal(response.data);
-    
-        }
+
+      useEffect(() => {
+        const getWeatherDataFromServer = async () => {
+            const data = { latitude: Latitude, longitude: Longitude };
+            try {
+                const response = await axios.post('http://localhost:3000/api/weather', data, {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+                setweatherDataExternal(response.data);
+            } catch (error) {
+                console.error("Error fetching weather data:", error);
+            }
+        };
+
         getWeatherDataFromServer();
-    }, []);
-    
+    }, [Latitude, Longitude]); 
     const weatherData=weatherDataExternal
 
     let forecast=weatherData? weatherData?.forecast: "wait";
@@ -119,7 +129,7 @@ const Dashboard=()=>{
                         <div className='bg-orange-200  m-2 rounded-md md:w-max-[300px] md:w-[275px] w-[375px] h-[50%] not-md:w-[100%] '>
                             
                         
-                       <iframe className='w-[100%] rounded-xl' height="400" src={"https://api.maptiler.com/maps/satellite/?key="+ MAP_TILER_API_KEY+"#14.1/31.39774/75.53641" } ></iframe>
+                       <iframe className='w-[100%] rounded-xl' height="400" src={"https://api.maptiler.com/maps/satellite/?key="+ MAP_TILER_API_KEY+"#14.1/"+Latitude+"/"+Longitude } ></iframe>
 
 
 
