@@ -14,10 +14,19 @@ import ProtectedRoute from "./Authentication/ProtectedRoute";
 
 const Dashboard=()=>{
     const {weatherDataExternal,setweatherDataExternal}=useContext(UserContext);
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log("Latitude:", position.coords.latitude);
+          console.log("longitude:", position.coords.longitude);
+        },
+        (error) => {
+          console.error("Error Code:", error.code, "Message:", error.message);
+        }
+    );
 
     useEffect(() => {
         const getWeatherDataFromServer= async()=>{
-            const response=await axios('http://localhost:3000/api/weather');
+            const response=await axios('/api/weather');
             // console.log(response)
             setweatherDataExternal(response.data);
     

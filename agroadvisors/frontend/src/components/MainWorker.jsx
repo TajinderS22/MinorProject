@@ -34,7 +34,7 @@ const MainWorker=()=>{
             console.log(data)
 
             try {
-                const result = await axios.post('http://localhost:3000/api/predict-fertilizer', data);
+                const result = await axios.post('/api/predict-fertilizer', data);
                 console.log(result.data);
                 console.log(result?.data?.data?.result)
                 setisResultsLoaded(true);
@@ -53,7 +53,7 @@ const MainWorker=()=>{
             console.log(data)
 
             try {
-                const result = await axios.post('http://localhost:3000/api/predict-irrigation', data);
+                const result = await axios.post('/api/predict-irrigation', data);
                 console.log(result);
                 console.log(result.data?.data?.result)
                 setisResultsLoaded(true);

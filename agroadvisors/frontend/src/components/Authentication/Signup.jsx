@@ -32,7 +32,7 @@ const Signup = () => {
         }
         try{
             if(isLogin){
-                const response= await fetch('http://localhost:3000/api/login',{
+                const response= await fetch('/api/login',{
                     method:'post',
                     headers:{
                         "content-type":"application/json"
@@ -49,7 +49,7 @@ const Signup = () => {
                 }
                 
             }else{
-                const response= await fetch('http://localhost:3000/api/signup',{
+                const response= await fetch('/api/signup',{
                     method:'post',
                     headers:{
                         "content-type":"application/json"
