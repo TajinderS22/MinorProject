@@ -14,15 +14,25 @@ import ProtectedRoute from "./Authentication/ProtectedRoute";
 
 const Dashboard=()=>{
     const {weatherDataExternal,setweatherDataExternal}=useContext(UserContext);
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.log("Latitude:", position.coords.latitude);
-          console.log("longitude:", position.coords.longitude);
-        },
-        (error) => {
-          console.error("Error Code:", error.code, "Message:", error.message);
-        }
-    );
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            console.log("Latitude:", position.coords.latitude);
+            console.log("Longitude:", position.coords.longitude);
+          },
+          (error) => {
+            console.error("Error getting location:", error);
+          },
+          {
+            enableHighAccuracy: true, // Set to true for better accuracy
+            timeout: 5000, // Time limit for the request
+            maximumAge: 0, // Don't use cached location
+          }
+        );
+      } else {
+        console.log("Geolocation is not available on this device/browser.");
+      }
+      
 
     useEffect(() => {
         const getWeatherDataFromServer= async()=>{
