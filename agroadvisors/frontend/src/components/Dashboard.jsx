@@ -41,7 +41,7 @@ const Dashboard=()=>{
         const getWeatherDataFromServer = async () => {
             const data = { latitude: Latitude, longitude: Longitude };
             try {
-                const response = await axios.post('http://localhost:3000/api/weather', data, {
+                const response = await axios.post('/api/weather', data, {
                     headers: {
                         "Content-Type": "application/json"
                     }
