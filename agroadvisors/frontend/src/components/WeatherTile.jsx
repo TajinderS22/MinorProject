@@ -54,7 +54,7 @@ const WeatherTile=(weatherData)=>{
                 </div>
 
                 <div>
-                    <div className="text-lg font-medium text-rightflex flex-col justify-end items-end  ">
+                    <div className="text-lg font-medium text-right flex flex-col justify-end items-end  ">
                         <img className='h-[58px] text-right' src={weatherData?.day?.condition?.icon} alt="" />
                         <p>{weatherData?.day?.condition?.text}</p>
                     </div>
