@@ -201,7 +201,7 @@ const MainWorker=()=>{
                                 <label className ='my-auto mx-2' htmlFor="SoilType">SoilType</label>
                                 <select  ref={SoilTyperef} onChange={handleChange} id='SoilType' type="number" className='bg-gray-300  p-2  rounded-lg border-1 border-green-600 my-4  min-w-44 hover:shadow-2xl hover:shadow-amber-700'   placeholder='SoilType' >
                                     <option value="Sandy">Sandy</option>
-                                    <option value="Loomy">Loomy</option>
+                                    <option value="Loamy">Loamy</option>
                                     <option value="Black">Black</option>
                                     <option value="Red">Red</option>
                                     <option value="Clayey">Clayey</option>
@@ -220,7 +220,7 @@ const MainWorker=()=>{
                                     <option value="Pulses">Pulses</option>
                                     <option value="Ground Nuts">Ground Nuts</option>
                                     <option value="Millets">Millets</option>
-                                    <option value="Oil Seeds">Oil Seeds</option>
+                                    <option value="Oil seeds">Oil Seeds</option>
                                     <option value="Wheat">Wheat</option>
 
                                 </select>
